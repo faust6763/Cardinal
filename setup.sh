@@ -8,7 +8,7 @@ if [ -f /etc/lsb-release ]; then
     if [[ "$DISTRO" == "Ubuntu" ]]; then
         clear
         echo "This OS is Ubuntu."
-        sudo sed -i 's/#DNS=/DNS=8.8.8.8/' /etc/systemd/resolved.conf
+        sudo sed -i 's/#DNS=/DNS=77.88.8.8/' /etc/systemd/resolved.conf
         sudo sed -i 's/#DNSStubListener=yes/DNSStubListener=no/' /etc/systemd/resolved.conf
         sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
@@ -76,7 +76,7 @@ go build
    [Service]
    Type=simple
    WorkingDirectory=/root/dnstt/dnstt-server
-   ExecStart=/root/dnstt/dnstt-server/dnstt-server -udp :53 -privkey-file server.key $nameserver 127.0.0.1:22
+   ExecStart=/root/dnstt/dnstt-server/dnstt-server -tcp :53 -privkey-file server.key $nameserver 127.0.0.1:80
    Restart=always
 
    [Install]
